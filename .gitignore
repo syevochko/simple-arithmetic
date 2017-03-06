@@ -1,0 +1,10 @@
+*.class
+*.iml
+/bin
+/out
+/target
+/.idea
+/.settings
+.project
+.classpath
+*_audit.txt
