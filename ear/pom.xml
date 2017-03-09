@@ -13,13 +13,39 @@
    </parent>
 
    <dependencies>
-
+      <dependency>
+         <groupId>root.project</groupId>
+         <artifactId>web-rest</artifactId>
+         <type>war</type>
+         <version>1.0</version>
+      </dependency>
    </dependencies>
+
    <build>
       <plugins>
          <plugin>
             <artifactId>maven-ear-plugin</artifactId>
             <configuration>
+               <modules>
+                  <webModule>
+                     <groupId>root.project</groupId>
+                     <artifactId>web-rest</artifactId>
+                  </webModule>
+                  <!--ejbModule>
+                     <groupId>org.example.mvnearplg</groupId>
+                     <artifactId>ejb</artifactId>
+                  </ejbModule>
+                  <jarModule>
+                     <groupId>org.apache.lucene</groupId>
+                     <artifactId>lucene-highlighter</artifactId>
+                     <bundleDir>lucenlib</bundleDir>
+                  </jarModule>
+                  <jarModule>
+                     <groupId>org.apache.lucene</groupId>
+                     <artifactId>lucene-core</artifactId>
+                     <bundleDir>lucenelib</bundleDir>
+                  </jarModule-->
+               </modules>
                <archive>
                   <manifest>
                      <addClasspath>true</addClasspath>
