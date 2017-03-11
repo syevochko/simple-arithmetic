@@ -1,7 +1,7 @@
 <project>
    <modelVersion>4.0.0</modelVersion>
    <groupId>root.project</groupId>
-   <artifactId>ear</artifactId>
+   <artifactId>ear-module</artifactId>
    <packaging>ear</packaging>
    <version>1.0</version>
    <name>ear assembly</name>
@@ -30,6 +30,7 @@
                   <webModule>
                      <groupId>root.project</groupId>
                      <artifactId>web-rest</artifactId>
+                     <contextRoot>/SimpleArithmetic</contextRoot>
                   </webModule>
                   <!--ejbModule>
                      <groupId>org.example.mvnearplg</groupId>

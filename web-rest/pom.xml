@@ -28,6 +28,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>web-rest</finalName>
+        <finalName>web-rest1</finalName>
     </build>
 </project>

@@ -5,10 +5,11 @@
    <version>1.0</version>
    <artifactId>project</artifactId>
    <packaging>pom</packaging>
+
    <name>project</name>
 
    <modules>
-      <module>ear</module>
+      <module>ear-module</module>
       <module>web-rest</module>
    </modules>
 
