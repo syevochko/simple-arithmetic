@@ -8,6 +8,4 @@
 .project
 .classpath
 *_audit.txt
-ear-module/target/ear-module-1.0.ear
-ear-module/target/ear-module-1.0/
-web-rest/target/
+*/target
