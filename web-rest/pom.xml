@@ -20,6 +20,19 @@
             <artifactId>jersey-bundle</artifactId>
             <version>1.19.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>1.19.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.evochko</groupId>
+            <artifactId>calculation</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
