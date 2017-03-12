@@ -22,6 +22,10 @@ public class Message implements Serializable {
         this.result = result;
     }
 
+    public Message(Status status, String message, double result)    {
+        this(status.getCode(), status.getValue(), message, result);
+    }
+
     public String getStatus() {
         return status;
     }

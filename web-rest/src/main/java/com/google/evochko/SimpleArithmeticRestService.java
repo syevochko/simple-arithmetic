@@ -1,6 +1,7 @@
 package com.google.evochko;
 
 import com.google.evochko.model.Message;
+import com.google.evochko.model.Status;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -17,7 +18,7 @@ public class SimpleArithmeticRestService extends Application {
     @Path("/verify")
     @Produces(MediaType.APPLICATION_JSON)
     public Message verifyRestService(InputStream inputStream) {
-        return new Message(0, "OK", "SimpleArithmeticRestService successfully started..", 0);
+        return new Message(Status.OK, "SimpleArithmeticRestService successfully started..", 0);
     }
 
     @GET
@@ -38,8 +39,8 @@ public class SimpleArithmeticRestService extends Application {
         }
 
         if (!invalidKeys.isEmpty())  {
-            return new Message(1000, "ERROR", "Invalid numbers in " + invalidKeys, 0);
+            return new Message(Status.ERROR, "Invalid numbers in " + invalidKeys, 0);
         }
-        return new Message(0, "OK", "calculation result is " + params, 0);
+        return new Message(Status.OK, "calculation result is " + params, 0);
     }
 }
