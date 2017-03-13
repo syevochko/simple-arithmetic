@@ -9,6 +9,7 @@ import com.sun.jersey.spi.resource.Singleton;
 import matchParser.MatchParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.message.MessageFactory2;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
