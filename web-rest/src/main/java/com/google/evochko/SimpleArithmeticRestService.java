@@ -5,12 +5,14 @@ import com.google.evochko.exceptions.InvalidExpression;
 import com.google.evochko.exceptions.InvalidParameters;
 import com.google.evochko.model.Message;
 import com.google.evochko.model.Status;
-import com.sun.jersey.spi.resource.Singleton;
 import matchParser.MatchParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.message.MessageFactory2;
 
+import javax.annotation.ManagedBean;
+import javax.ejb.Local;
+import javax.ejb.Singleton;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.io.InputStream;
@@ -19,16 +21,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@ApplicationPath("/SimpleArithmetic")
-@Path("/api")
-@Singleton
-public class SimpleArithmeticRestService extends Application {
+@Path("/SimpleArithmetic/api")
+@ManagedBean
+public class SimpleArithmeticRestService {
     private static final Logger logger = LogManager.getLogger(SimpleArithmeticRestService.class);
-    private String mathExpression;
+    //private String mathExpression;
+    @Inject
+    private MathExpressionSingletonBean mathExpression;
 
-    public SimpleArithmeticRestService()    {
-        mathExpression = "(x1+x2)/2";
-        logger.info("start service with expression: " + mathExpression);
+    public SimpleArithmeticRestService() {
+        logger.info("start service with expression: " + mathExpression.getExpression());
     }
 
     @GET
@@ -62,17 +64,18 @@ public class SimpleArithmeticRestService extends Application {
         }
 
         try {
+            String expression = mathExpression.getExpression();
             if (!invalidKeys.isEmpty()) {
                 throw new InvalidParameters(invalidKeys);
             }
 
             try {
-                result = calculation.Parse(mathExpression);
+                result = calculation.Parse(expression);
             } catch (Exception e) {
-                throw new InvalidExpression("Invalid expression: " + mathExpression);
+                throw new InvalidExpression("Invalid expression: " + expression);
             }
 
-            Message m = new Message(Status.OK, mathExpression + " << " + params + " = ", result);
+            Message m = new Message(Status.OK, expression + " << " + params + " = ", result);
             logger.info(m.getMessage() + m.getResult());
             return m;
 
@@ -91,8 +94,8 @@ public class SimpleArithmeticRestService extends Application {
             return new Message(Status.ERROR, "invalid expression", 0);
         }
 
-        mathExpression = expression;
-        Message m = new Message(Status.OK, "expression set to: " + mathExpression, 0);
+        mathExpression.setExpression(expression);
+        Message m = new Message(Status.OK, "expression set to: " + expression, 0);
         logger.info(m.getMessage());
         return m;
     }

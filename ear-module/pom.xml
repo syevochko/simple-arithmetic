@@ -19,6 +19,12 @@
          <type>war</type>
          <version>1.0</version>
       </dependency>
+
+      <dependency>
+         <groupId>root.project</groupId>
+         <artifactId>jar-module</artifactId>
+         <version>1.0</version>
+      </dependency>
    </dependencies>
 
    <build>
@@ -32,20 +38,10 @@
                      <artifactId>web-rest</artifactId>
                      <contextRoot>/SimpleArithmetic</contextRoot>
                   </webModule>
-                  <!--ejbModule>
-                     <groupId>org.example.mvnearplg</groupId>
-                     <artifactId>ejb</artifactId>
-                  </ejbModule>
                   <jarModule>
-                     <groupId>org.apache.lucene</groupId>
-                     <artifactId>lucene-highlighter</artifactId>
-                     <bundleDir>lucenlib</bundleDir>
+                     <groupId>root.project</groupId>
+                     <artifactId>jar-module</artifactId>
                   </jarModule>
-                  <jarModule>
-                     <groupId>org.apache.lucene</groupId>
-                     <artifactId>lucene-core</artifactId>
-                     <bundleDir>lucenelib</bundleDir>
-                  </jarModule-->
                </modules>
                <archive>
                   <manifest>

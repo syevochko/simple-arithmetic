@@ -11,6 +11,7 @@
    <modules>
       <module>ear-module</module>
       <module>web-rest</module>
+      <module>jar-module</module>
    </modules>
 
    <properties>
