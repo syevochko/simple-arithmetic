@@ -50,6 +50,7 @@
             return true;
         }
 
+        expr = expr.replace(new RegExp("/",'g'), '!');
         $.getJSON(
                 "SimpleArithmetic/api/expression/"+ expr,
                 function (data) {

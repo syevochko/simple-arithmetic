@@ -5,31 +5,33 @@ import com.google.evochko.exceptions.InvalidExpression;
 import com.google.evochko.exceptions.InvalidParameters;
 import com.google.evochko.model.Message;
 import com.google.evochko.model.Status;
+import com.sun.jersey.spi.resource.Singleton;
 import matchParser.MatchParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.ManagedBean;
-import javax.ejb.Local;
-import javax.ejb.Singleton;
-import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.UriInfo;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Path("/SimpleArithmetic/api")
-@ManagedBean
+@Path("/api")
+@Singleton
 public class SimpleArithmeticRestService {
     private static final Logger logger = LogManager.getLogger(SimpleArithmeticRestService.class);
-    //private String mathExpression;
-    @Inject
     private MathExpressionSingletonBean mathExpression;
 
     public SimpleArithmeticRestService() {
+        mathExpression = new MathExpressionSingletonBean("(x1+x2)/2");
         logger.info("start service with expression: " + mathExpression.getExpression());
     }
 
@@ -39,7 +41,6 @@ public class SimpleArithmeticRestService {
     public Message verifyRestService(InputStream inputStream) {
         return new Message(Status.OK, "SimpleArithmeticRestService successfully started...", 0);
     }
-
 
     @GET
     @Path("/calc")
@@ -88,14 +89,17 @@ public class SimpleArithmeticRestService {
     @GET
     @Path("/expression/{expression}")
     @Produces(MediaType.APPLICATION_JSON)
+    /**
+     * We have to replace ! on / in {expression}, because / is a part of url path
+     */
     public Message setExpression(@PathParam("expression") String expression) {
         if (expression == null || expression.length() == 0) {
             logger.warn("Setting the expression failed - it was empty");
             return new Message(Status.ERROR, "invalid expression", 0);
         }
 
-        mathExpression.setExpression(expression);
-        Message m = new Message(Status.OK, "expression set to: " + expression, 0);
+        mathExpression.setExpression(expression.replaceAll("!", "/"));
+        Message m = new Message(Status.OK, "expression set to: " + mathExpression.getExpression(), 0);
         logger.info(m.getMessage());
         return m;
     }
