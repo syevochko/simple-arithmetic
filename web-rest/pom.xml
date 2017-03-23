@@ -18,7 +18,7 @@
         <repository>
             <id>local-rep</id>
             <name>local repository</name>
-            <url>file://${project.base.path}/lib</url>
+            <url>file:../lib</url>
         </repository>
     </repositories>
 
