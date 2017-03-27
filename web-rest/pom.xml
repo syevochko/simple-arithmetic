@@ -14,14 +14,6 @@
     <name>web-rest Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
-    <repositories>
-        <repository>
-            <id>local-rep</id>
-            <name>local repository</name>
-            <url>file://${basedir}/lib</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>com.sun.jersey</groupId>
@@ -32,19 +24,7 @@
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-json</artifactId>
-            <version>1.19.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.evochko</groupId>
-            <artifactId>calculation</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>root.project</groupId>
-            <artifactId>jar-module</artifactId>
-            <version>1.0</version>
+            <version>1.8</version>
         </dependency>
 
         <dependency>

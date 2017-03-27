@@ -3,10 +3,10 @@ package com.google.evochko;
 import com.google.evochko.exceptions.AppException;
 import com.google.evochko.exceptions.InvalidExpression;
 import com.google.evochko.exceptions.InvalidParameters;
+import com.google.evochko.math.MatchParser;
 import com.google.evochko.model.Message;
 import com.google.evochko.model.Status;
 import com.sun.jersey.spi.resource.Singleton;
-import matchParser.MatchParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -71,7 +71,7 @@ public class SimpleArithmeticRestService {
             }
 
             try {
-                result = calculation.Parse(expression);
+                result = calculation.parse(expression);
             } catch (Exception e) {
                 throw new InvalidExpression("Invalid expression: " + expression);
             }
